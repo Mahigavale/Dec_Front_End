@@ -12,7 +12,7 @@ var count=0;
 
 for(v=2;v<5000;v++)
 {
-    if(count==144)
+    if(count==100)
     {
         break;
     }
