@@ -18,3 +18,7 @@ function multiply(v)
 console.log("************");
 
    arr.forEach(multiply)
+
+
+
+   
