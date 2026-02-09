@@ -65,3 +65,22 @@ res.json().then((v)=>{
 })
     
 }
+
+
+
+
+function GetDemo()
+{
+    let v=document.getElementById("1");
+
+    console.log(v);
+    
+}
+
+  function Submit()
+{
+    let v=  document.getElementById("1").innerText;
+
+    console.log(v+":::");
+    
+}
