@@ -23,6 +23,10 @@ public class Teacher {
 	
 	String tdegree;
 
+	
+	@OneToMany(mappedBy = "teach")
+	private List<Student> students;
+	
 	public int getTid() {
 		return tid;
 		
@@ -56,7 +60,16 @@ public class Teacher {
 		this.tdegree = tdegree;
 	}
 
+	public List<Student> getStudents() {
+		return students;
+	}
 
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+
+
+	
 	
 	
 	

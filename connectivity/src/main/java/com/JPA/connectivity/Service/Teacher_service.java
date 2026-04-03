@@ -26,9 +26,9 @@ public class Teacher_service {
 	
 	}
 	
-	public List<Teacher>  getAll()
+	public List<TeacherDto>  getAll()
 	{
-	  return repo.findAll();
+	  return repo.findAll().stream().map(TeacherDto::convert).collect(Collectors.toList());
 	 
 	
 	}

@@ -49,7 +49,7 @@ public class TeacherController {
 	}
 	
 	@GetMapping("/get-teacher")
-	public List<Teacher> getall()
+	public List<TeacherDto> getall()
 	{
 		System.out.println("**************");
 		System.out.println(context.getBeanDefinitionCount());
