@@ -2,10 +2,13 @@ package com.JPA.connectivity.Controllers;
 
 import java.security.SecureRandom;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.JPA.connectivity.Entity.Teacher;
+import com.JPA.connectivity.Exceptions.DemoException;
+import com.JPA.connectivity.Exceptions.TeacherNotFoundException;
 import com.JPA.connectivity.Repository.Teacher_Repo;
 import com.JPA.connectivity.Service.Teacher_service;
 import com.JPA.connectivity.dtos.TeacherDto;
@@ -41,11 +46,15 @@ public class TeacherController {
 //	private SmsService sms;
 	
 	@PostMapping("/add-teacher")
-	public String add(@RequestBody Teacher teach)
+	public String add(@RequestBody Teacher teach) throws DemoException
 	{
-		
-		
+		if(true)
+		{
+		 throw new DemoException();
+		}
 		return service.addTeacher(teach);
+		
+		
 	}
 	
 	@GetMapping("/get-teacher")
@@ -98,12 +107,24 @@ public class TeacherController {
 	
 	
 	@DeleteMapping("teach/delete/{id}")
-	  public boolean delete(@PathVariable(value="id") int id)
+	  public String delete(@PathVariable(value="id") int id) throws TeacherNotFoundException
 	  {
+		
+	Optional<Teacher> teach=repo.findById(id);	
+	
+	      if(!teach.isPresent())
+	      {
+	    	  throw new TeacherNotFoundException(id);
+	      }
+	  
 		  repo.deleteById(id);
 		  
-		  return true;
+		  
+		  return "deleted!";
 		  
 		  
 	  }
+	
+	
+	
 }
