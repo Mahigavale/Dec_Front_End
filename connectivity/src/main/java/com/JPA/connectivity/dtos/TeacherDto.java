@@ -1,14 +1,19 @@
 package com.JPA.connectivity.dtos;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.JPA.connectivity.Entity.Student;
 import com.JPA.connectivity.Entity.Teacher;
 
-public class TeacherDto {
+public class TeacherDto implements Serializable {
 
-    String tname;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String tname;
 	String tgmail;
 	
 	private List<StudentDto2> students;

@@ -16,12 +16,12 @@ import jakarta.transaction.Transactional;
 public interface Teacher_Repo extends JpaRepository<Teacher,Integer> {
 
 	
-	@Query(value="select * from teacher where name= :nm;",nativeQuery=true)
+	@Query(value="select * from teacher where tname= :nm;",nativeQuery=true)
 	 List<Teacher> getByName(@Param(value="nm") String  name);
 	
 	
 	@Modifying
 	@Transactional
-	@Query(value=" update teacher set  gmail= :mail  where id= :id;", nativeQuery=true)
+	@Query(value=" update teacher set  tgmail= :mail  where tid= :id;", nativeQuery=true)
 	int updateemail( @Param(value="id") int id,@Param(value="mail") String newmail);
 }

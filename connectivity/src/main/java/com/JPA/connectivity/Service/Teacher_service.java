@@ -5,8 +5,10 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.JPA.connectivity.Entity.Teacher;
+import com.JPA.connectivity.Exceptions.TeacherWithThisNameDoesNotExistException;
 import com.JPA.connectivity.Repository.Teacher_Repo;
 import com.JPA.connectivity.dtos.TeacherDto;
 
@@ -34,8 +36,15 @@ public class Teacher_service {
 	}
 	
 	
-	public List<Teacher> getbyname(String name)
+	public List<Teacher> getbyname(String name) throws TeacherWithThisNameDoesNotExistException
 	{
+		if(repo.getByName(name).size()==0)
+		{
+			// System.err.println(repo.getByName(name).size());
+			throw new TeacherWithThisNameDoesNotExistException(name);
+		}
+		
+		// System.err.println(repo.getByName(name).size());
 		return repo.getByName(name);
 	}
 	
@@ -44,4 +53,8 @@ public class Teacher_service {
 	{
 		return repo.updateemail(id,email);
 	}
+	
+	
+	
 }
+
